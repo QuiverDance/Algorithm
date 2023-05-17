@@ -4,46 +4,31 @@
 
 using namespace std;
 
-vector<int> a;
-int n = 9, k = 7, found = 0;
-void print(vector<int> b){
-    vector<int> result;
-    for(auto it : b){
-        result.push_back(a[it]);
+int a[9];
+int sum = 0;
+void print(pair<int, int> e){
+    for(int i = 0; i < 9; i++){
+        if(i == e.first || i == e.second)
+            continue;
+        cout << a[i] << '\n';
     }
-    sort(result.begin(), result.end());
-    for(auto it : result)
-        cout << it << '\n';
-}
-
-void combi(int start, vector<int> b){
-    if(found == 1)
-        return;
-    if(b.size() == k){
-        int sum = 0;
-        for(auto it : b) sum += a[it];
-        if(sum == 100){
-            found = 1;
-            print(b);
-        }
-        return;
-    }
-    for(int i = start + 1; i < n; i++){
-        b.push_back(i);
-        combi(i, b);
-        b.pop_back();
-    }
-    return;
 }
 
 int main(void){
-    int h = 0;
     for(int i = 0; i < 9; i++){
-        cin >> h;
-        a.push_back(h);
+        cin >> a[i];
+        sum += a[i];
     }
+    sort(a, a + 9);
 
-    vector<int> b;
-    combi(-1, b);
+    //combiation
+    for(int i = 0; i < 9; i++){
+        for(int j = i + 1; j < 9; j++){
+            if(sum - a[i] - a[j] == 100){
+                print({i, j});
+                return 0;
+            }
+        }
+    } 
     return 0;
 }
