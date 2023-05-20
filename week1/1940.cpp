@@ -11,6 +11,12 @@ int main(void){
 
     cin >> n;
     cin >> m;
+
+    if(m > 200000){
+        cout << 0;
+        return 0;
+    }
+    
     int a;
     for(int i = 0; i < n; i++){
         cin >> a;
