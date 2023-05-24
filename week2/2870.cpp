@@ -1,55 +1,36 @@
 #include<iostream>
-#include<vector>
 #include<algorithm>
+#include<vector>
 
-using namespace std;
-
-int n, start;
-string s;
-vector<string> v;
-
-bool cmp(string a, string b){
-    if(a.size() != b.size()) return a.size() < b.size();
-    return a < b;
+using namespace std;   
+int n; 
+vector<string> v; 
+string s, ret;
+void go(){   
+	while(true){  
+		if(ret.size() && ret.front() == '0')ret.erase(ret.begin()); 
+		else break;
+	}
+	if(ret.size() == 0) ret = "0"; 
+	v.push_back(ret);
+	ret = "";  
 }
-
-int main(void){
-    cin >> n;
-    for(int i = 0; i < n; i++){
-        cin >> s;
-        start = -1;
-        for(int i = 0; i < s.size(); i++){
-            if(s[i] >= '0' && s[i] <= '9'){
-                if(start == -1) start = i;
-            }
-            else if(start != -1){
-                v.push_back(s.substr(start, i - start));
-                start = -1;
-            }
-            if(start != -1 && i == s.size()-1)
-                v.push_back(s.substr(start, i - start + 1));
-        }
-    }
-    for(int i = 0; i < v.size(); i++){
-        string str = v[i];
-        if(str[0] == '0' && str.size() > 1){
-            int flag = 0;
-            for(int j = 0; j < str.size(); j++){
-                if(str[j] != '0'){
-                    flag = 1;
-                    v[i] = str.substr(j);
-                    break;
-                } 
-            }
-            if(!flag){
-                v[i] = "0";
-            }
-
-        }
-    }
-    sort(v.begin(), v.end(), cmp);
-    for(auto it : v){
-        cout << it << '\n';
-    }
-    return 0;
+bool cmp(string a, string b){
+	if(a.size() == b.size()) return a < b;
+	return a.size() < b.size();
+}
+int main () {
+	cin >> n; 
+	for(int i = 0; i < n; i++){
+		cin >> s; 
+	 	ret = "";
+		for(int j = 0; j < s.size(); j++){
+			if(s[j] < 65)ret += s[j];
+			else if(ret.size()) go(); 
+		}
+		if(ret.size()) go(); 
+	}
+	sort(v.begin(), v.end(), cmp);
+	for(string i : v)cout << i << "\n"; 
+	return 0;
 }
