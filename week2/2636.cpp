@@ -1,60 +1,51 @@
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
-int n, m, a, time, cnt, temp;
-int board[101][101], visited[101][101];
-int dy[] = {-1, 0, 1, 0};
-int dx[] = {0, 1, 0, -1};
+int a[104][104], visited[104][104];
+int dy[]={-1,0,1,0}, dx[] = {0,1,0,-1};   
+int n,m,cnt,cnt2;
+vector <pair<int,int>>v;
+void go(int y,int x){
+	visited[y][x] = 1;
+    if(a[y][x]==1){
+        v.push_back({y,x});
+        return;
+    }
+    for(int i=0; i<4; i++){
+        int ny = y + dy[i];
+        int nx = x + dx[i];
+        if(ny<0 || ny>=n || nx<0 || nx>=m || visited[ny][nx])continue; 
+        go(ny,nx);
+    }
+    return;
+}
 
-int count(){
-    int ret = 0;
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
-            if(board[i][j] == 1) ret++;
-        }
-    }
-    return ret;
-}
-void update(){
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
-            if(board[i][j] == -1) board[i][j] = 0;
-        }
-    }
-}
-void dfs(int y, int x){
-    visited[y][x] = 1;
-    for(int d = 0; d < 4; d++){
-        int ny = y + dy[d];
-        int nx = x + dx[d];
-        if(ny < 0 || nx < 0 || ny > n-1 || nx > m-1) continue;
-        if(board[ny][nx] == 1){
-            board[ny][nx] = -1;
-        }
-        else if(board[ny][nx] == 0 && !visited[ny][nx]) dfs(ny, nx);
-    }
-}
-int main(void){
+int main(){ 
     cin >> n >> m;
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
-            cin >> a;
-            board[i][j] = a;
+    for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+            cin>>a[i][j];
         }
     }
-    time = 0; cnt = count();
     while(true){
-        fill(&visited[0][0], &visited[0][0] + 101 * 101, 0);
-        dfs(0, 0);
-        update();
-        time++;
-        temp = count();
-        if(temp > 0)
-            cnt = temp;
-        else
-            break;
+        cnt2 =0;
+        fill(&visited[0][0],&visited[0][0] + 104 * 104,0);
+        v.clear(); 
+        go(0,0); 
+        for(pair<int, int> b : v){
+			cnt2++;
+			a[b.first][b.second] = 0;
+		}   
+        bool flag = 0;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(a[i][j] != 0) flag = 1;
+            }
+        }
+        cnt++;
+        if(!flag) break;
     }
-    cout << time <<'\n' << cnt;
-    return 0;
+    cout<<cnt<<"\n" << cnt2 << '\n'; 
 }
