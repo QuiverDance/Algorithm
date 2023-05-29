@@ -1,22 +1,21 @@
 #include<iostream>
+#include<string>
 
 using namespace std;
 
-int n, temp, cnt, cnt_6;
+int n, cnt;
 int main(void){
     cin >> n;
     cnt = 0;
+    string s;
     for(int i = 666; i < 10000000; i++){
-        temp = i; cnt_6 = 0;
-        while(temp > 0){
-            if(temp % 10 == 6) cnt_6++;
-            else cnt_6 = 0;
-            if(cnt_6 >= 3){ cnt++; break;}
-            temp /= 10;
-        }
-        if(cnt == n){
-            cout << i;
-            break;;
+        s = to_string(i);
+        if(s.find("666") != string::npos){
+            cnt++;
+            if(cnt == n){
+                cout << s;
+                break;
+            }
         }
     }
     return 0;
