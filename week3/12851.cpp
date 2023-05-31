@@ -18,22 +18,20 @@ int main(void){
     q.push(n);
     visited[n] = 1;
     cnt[n] = 1;
-    int x, nx;
-    while(q.size()){
-        x = q.front();
+    int x;
+    while (q.size()) {
+        int x = q.front();
         q.pop();
-        for(int i = 0; i < 3; i++){
-            if(i == 2) nx = 2 * x;
-            else nx = x + d[i];
-
-            if(nx < 0 || nx > 100000) continue;
-            if(visited[nx]){
-                if(visited[nx] == visited[x] + 1) cnt[nx] += cnt[x];
-                continue;
+        for (int nx : {x-1, x+1, x*2}) {
+            if (0 <= nx && nx <= 100000) { 
+                if (!visited[nx]) {
+                    q.push(nx); 
+                    visited[nx] = visited[x] + 1;
+                    cnt[nx] += cnt[x];
+                } else if (visited[nx] == visited[x] + 1) {
+                    cnt[nx] += cnt[x];
+                }
             }
-            visited[nx] = visited[x] + 1;
-            cnt[nx] += cnt[x];
-            q.push(nx);
         }
     }
     cout << visited[k] - 1 << '\n';
