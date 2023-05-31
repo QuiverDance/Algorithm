@@ -30,12 +30,9 @@ int main(void){
         tie(x, y, z) = q.front();
         q.pop();
         for(int i = 0; i < 6; i++){
-            int nx = x + d[i][0];
-            int ny = y + d[i][1];
-            int nz = z + d[i][2];
-            if(nx < 0) nx = 0;
-            if(ny < 0) ny = 0;
-            if(nz < 0) nz = 0;
+            int nx = max(0, x + d[i][0]);
+            int ny = max(0, y + d[i][1]);
+            int nz = max(0, z + d[i][2]);
 
             if(vistied[nx][ny][nz]) continue;
             vistied[nx][ny][nz] = vistied[x][y][z] + 1;
