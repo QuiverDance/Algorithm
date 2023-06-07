@@ -55,7 +55,7 @@ int main(void){
 
     }
     if(ret == 1e8) cout << "-1";
-    else
+    else 
         cout << ret;
     return 0;
 }
