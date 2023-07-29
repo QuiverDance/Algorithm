@@ -1,20 +1,19 @@
 #include<iostream>
 #include<string>
-#include<map>
+#include<set>
 using namespace std;
 
 int n, m, cnt;
-string s;
-map<string, int> mp;
+string s1, s2;
+set<string, greater<string>> st;
 int main(void){
-    cin >> n >> m;
+    cin >> n;
     for(int i = 0; i < n; i++){
-        cin >> s; mp[s]++;
+        cin >> s1 >> s2;
+        if(s2 == "enter") st.insert(s1);
+        else st.erase(s1);
     }
-    for(int i = 0; i < m; i++){
-        cin >> s;
-        if(mp[s] > 0) cnt++;
-    }
-    cout << cnt;
+    for(auto it : st)
+        cout << it << '\n';
     return 0;
 }
