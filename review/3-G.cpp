@@ -19,8 +19,8 @@ int main(){
     while(!q.empty()){
         int x = q.front();
         q.pop();
-        for(int nx : {x + 1, x * 2}){
-            if(nx > 100000) continue;
+        for(int nx : {x - 1, x + 1, x * 2}){
+            if(nx < 0 || nx > 100000) continue;
             if(!visited[nx]){
                 q.push(nx);
                 visited[nx] = visited[x] + 1;
@@ -30,6 +30,6 @@ int main(){
                 mp[nx] += mp[x];
         }
     }
-    cout << visited[k] - 1 << '\n' << mp[k] - 1;
+    cout << visited[k] - 1 << '\n' << mp[k];
     return 0;
 }
