@@ -34,7 +34,8 @@ void dfs(int y, int x, int cnt){
 		return;
 	}
     if(a[y][x] == 0){
-		dfs(y, x + 1, cnt); return; 
+		dfs(y, x + 1, cnt);
+        return; 
 	}  
     for(int _size = 5; _size >= 1; _size--){
         if(mp[_size] == 5) continue; 
