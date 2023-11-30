@@ -12,13 +12,10 @@ int main(){
     for(int t = 0; t < (1 << n); t++){
         t1.clear(); t2.clear();
         for(int i = 0; i < n; i++){
-            if(t & (i << 1)) t1.push_back(i);
+            if(t & (1 << i)) t1.push_back(i);
             else t2.push_back(i);
         }
         if(t1.size() != t2.size()) continue;
-        for(int i = 0; i < n / 2; i++) cout << "t1 : " << t1[i] << ", ";
-        cout << " | ";
-        for(int i = 0; i < n / 2; i++) cout << "t2 : " << t2[i] << ", ";
         int sum1 = 0, sum2 = 0;
         for(int i = 0; i < n / 2; i++){
             for(int j = 0; j < n / 2; j++){
