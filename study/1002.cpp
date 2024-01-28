@@ -1,3 +1,6 @@
+/*
+    #1002 터렛
+*/
 #include<iostream>
 using namespace std;
 
