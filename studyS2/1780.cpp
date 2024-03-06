@@ -23,15 +23,11 @@ void solve(int sx, int sy, int size){
         ret[a[sy][sx] + 1]++;
         return;
     }
-    solve(sx, sy, size / 3);
-    solve(sx + size / 3, sy, size / 3);
-    solve(sx + 2 * size / 3, sy, size / 3);
-    solve(sx, sy + size / 3, size / 3);
-    solve(sx + size / 3, sy + size / 3 , size / 3);
-    solve(sx + 2 * size / 3, sy + size / 3, size / 3);
-    solve(sx, sy + 2 * size / 3, size / 3);
-    solve(sx + size / 3, sy + 2 * size / 3, size / 3);
-    solve(sx + 2 * size / 3, sy + 2 * size / 3, size / 3);
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            solve(sx + i * size / 3, sy + j * size /3, size / 3);
+        }
+    }
 }
 
 int main(){
