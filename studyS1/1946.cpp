@@ -6,7 +6,7 @@
 #include<algorithm>
 using namespace std;
 
-int t, n, ret, flag, mn;
+int t, n, ret, mn;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -24,7 +24,6 @@ int main() {
 
         ret = 0, mn = 1e9;
         for(int i = 0; i < n; i++){
-            flag = 1;
             if(v[i].second > mn) continue;
             mn = min(mn, v[i].second);
             ret++;
