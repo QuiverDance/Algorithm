@@ -5,7 +5,7 @@
 #include<string>
 using namespace std;
 
-int n, m, l, valid[14], ret;
+int n, m, valid[14], ret;
 void solve(string s){
     if(s.length() > 6){ return;}
     if(s != "")
@@ -26,7 +26,7 @@ int main() {
             cin >> num; valid[num] = 1;
         }
     }
-    ret = abs(n - 100); l = to_string(n).length();
+    ret = abs(n - 100);
     solve("");
     cout << ret;
     return 0;
