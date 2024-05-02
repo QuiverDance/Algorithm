@@ -21,7 +21,6 @@ int main(){
     sort(v.begin(), v.end());
     int lo = 0, hi = n - 1;
     while(lo < hi){
-        // cout << v[lo] << " " << v[hi] << '\n'; 
         if(mn > abs(v[lo] + v[hi])){
             mn = abs(v[lo] + v[hi]);
             ret1 = v[lo]; ret2 = v[hi];
