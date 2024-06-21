@@ -10,6 +10,7 @@ using namespace std;
 
 int t, from, to, visited[10004], trace[10004];
 string s1, s2, ret;
+char order[] = {'D', 'S', 'L', 'R'};
 int main(){
     cin >> t;
     while(t--){
@@ -24,28 +25,17 @@ int main(){
         while(!q.empty()){
             cur = q.front(); q.pop();
             if(cur == to) break;
-            
-            int num = (cur * 2) % 10000;
-            if(visited[num] < 0){
-                q.push(num); visited[num] = cur; trace[num] = 'D';
-            }
-            num = cur;
-            
-            num = (cur - 1 < 0 ? 9999 : cur - 1);
-            if(visited[num] < 0){
-                q.push(num); visited[num] = cur; trace[num] = 'S';
-            }
-            num = cur;
 
-            num = (num % 1000) * 10 + num / 1000;
-            if(visited[num] < 0){
-                q.push(num); visited[num] = cur; trace[num] = 'L';
-            }
-            num = cur;
+            int i = 0;
+            for(int num : {(cur * 2) % 10000, 
+                (cur - 1 < 0 ? 9999 : cur - 1), 
+                (cur % 1000) * 10 + cur / 1000,  
+                (cur % 10) * 1000 + cur / 10}){
 
-            num = (num % 10) * 1000 + num / 10;
-            if(visited[num] < 0){
-                q.push(num); visited[num] = cur; trace[num] = 'R';
+                if(visited[num] < 0){
+                    q.push(num); visited[num] = cur; trace[num] = order[i];
+                }
+                i++;
             }
         }
         ret = "";
