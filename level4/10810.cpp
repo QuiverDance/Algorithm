@@ -9,6 +9,6 @@ int main(void){
         for(int i = st; i <= ed; i++) a[i] = k;
     }
     for(int i = 1; i <= n; i++)
-        cout << a[i] << " ";
+        cout << a[i] << " ";    
     return 0;
 }

@@ -1,9 +1,12 @@
 #include<iostream>
 using namespace std;
 
-int n;
+int t, a, b;
 int main(void){
-    cin >> n;
-    cout << n * (n + 1) / 2;
+    cin >> t;
+    while(t--){
+        cin >> a >> b;
+        cout << a + b << '\n';
+    }
     return 0;
 }
